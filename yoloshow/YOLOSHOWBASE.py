@@ -840,7 +840,7 @@ class YOLOSHOWBASE:
             # 创建新字典，使用中文键
             result_str = ""
             for index, (key, value) in enumerate(self.result_statistic.items()):
-                result_str += f"【{key}{value}】 \t"
+                result_str += f"【{key}: {value}】 \t"
                 if (index + 1) % 4 == 0:
                     result_str += "\n"
 
@@ -859,14 +859,14 @@ class YOLOSHOWBASE:
             )
 
         # 修改字体大小
-        view.titleLabel.setStyleSheet("""font-size: 30px; 
+        view.titleLabel.setStyleSheet("""font-size: 18px; 
                                             color: black; 
                                             font-weight: bold; 
-                                            font-family: 'SimHei';
+                                            font-family: 'Microsoft YaHei';
                                         """)
-        view.contentLabel.setStyleSheet("""font-size: 25px; 
+        view.contentLabel.setStyleSheet("""font-size: 16px; 
                                             color: black; 
-                                            font-family: 'SimHei';""")
+                                            font-family: 'Microsoft YaHei';""")
         # 修改image的大小
         width = self.ui.rightbox_main.width() // 2
         height = self.ui.rightbox_main.height() // 2

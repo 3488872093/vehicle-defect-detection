@@ -109,7 +109,12 @@ class YOLOv5Thread(QThread):
         model = DetectMultiBackend_YOLOv5(weights, device=device, dnn=False, data=data, fp16=False)
         self.stride, self.names, self.pt = model.stride, model.names, model.pt
         self.imgsz = check_img_size(self.imgsz, s=self.stride)  # check image size
-
+        self.names = {
+            0: "Edge Crack",  #边缘裂纹
+            1: "Longitudinal Crack",  #横向裂纹     
+            2: "Surface Inclusion",  #表面杂质 
+            3: "Patches",  #斑块缺陷
+        }
         # Dataloader 加载数据
         bs = 1  # batch_size
         vid_stride = self.vid_stride

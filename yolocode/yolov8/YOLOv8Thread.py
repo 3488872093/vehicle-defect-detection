@@ -279,12 +279,12 @@ class YOLOv8Thread(QThread):
             fuse=True,
             verbose=verbose,
         )
-  #     self.model.names = {
- #         0: "夹杂物",
- #          1: "补丁",     
- #          2: "划痕", 
- #          3: "其他",
- #      }
+        self.model.names = {
+            0: "Edge Crack",  #边缘裂纹
+            1: "Longitudinal Crack",  #横向裂纹     
+            2: "Surface Inclusion",  #表面杂质 
+            3: "Patches",  #斑块缺陷
+        }
         self.device = self.model.device  # update device
         self.half = self.model.fp16  # update half
         self.model.eval()

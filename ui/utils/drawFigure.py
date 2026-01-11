@@ -30,9 +30,8 @@ class PlottingThread(QThread):
 
         # 绘制柱状图
         bars = sns.barplot(x=activities, y=values, ax=ax, zorder=3)
-        ax.set_title("目标类别统计比例", fontsize=16, fontweight='bold', pad=20)
-        ax.set_xlabel("类别", fontsize=12, labelpad=10)
-        ax.set_ylabel("百分比 (%)", fontsize=12, labelpad=10)
+        ax.set_xlabel("类别", fontsize=16, labelpad=5)
+        ax.set_ylabel("百分比 (%)", fontsize=16, labelpad=5)
 
         # 根据值设置柱状图颜色，并调整数据标签位置和字体大小
         for bar, value in zip(ax.patches, values):
@@ -43,15 +42,15 @@ class PlottingThread(QThread):
             else:
                 bar.set_color("#8e93af")  # 正常颜色
 
-            # 添加数据标签
+            # 添加数据标签（修改以下部分）
             ax.text(
                 bar.get_x() + bar.get_width() / 2.,
-                bar.get_height() - 5,  # 调整标签位置
+                bar.get_height() + 1,  # 将标签移动到柱顶上方
                 f"{value:.1f}%",
                 ha="center",
-                va="center",
-                color="white",
-                fontsize=12  # 调整字体大小
+                va="bottom",  # 底部对齐确保文本在柱顶上方
+                color="black",  # 改为黑色字体
+                fontsize=16
             )
 
         # 添加水平参考线
@@ -72,11 +71,11 @@ class PlottingThread(QThread):
             if i % 2 == 1:  # 隔一行一种颜色
                 ax.axhspan(yticks[i], yticks[i + 1], facecolor="#f6f8fb")
 
-        ax.tick_params(axis="x", rotation=45)
+        ax.tick_params(axis="x", rotation=0)
 
         # 调整刻度字体大小
-        plt.xticks(fontsize=10)
-        plt.yticks(fontsize=10)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
 
         # 优化布局和保存图像
         plt.tight_layout()
